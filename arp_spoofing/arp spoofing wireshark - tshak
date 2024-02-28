@@ -1,0 +1,27 @@
+The error message you're encountering indicates that Wireshark is unable to connect to the X display. This typically happens when you try to run a graphical application like Wireshark in a terminal environment that doesn't have access to an X Window System display.
+
+Since you're using Alpine Linux within a virtual machine (presumably without a graphical desktop environment), Wireshark cannot connect to a display to launch its graphical interface.
+
+To use Wireshark in a headless environment (without a graphical display), you can utilize its command-line interface (CLI) mode, called TShark, which is included with the Wireshark package.
+
+TShark provides similar functionality to Wireshark but operates in text mode and can be run from the command line. You can use it to capture and analyze network traffic without requiring a graphical display.
+
+Here's an example of how to use TShark to capture network traffic:
+
+bash
+
+sudo tshark -i <interface_name> -w <output_file.pcap>
+
+Replace <interface_name> with the name of the network interface you want to capture packets from (e.g., eth0) and <output_file.pcap> with the name of the output capture file.
+
+For example:
+
+bash
+
+sudo tshark -i eth0 -w capture.pcap
+
+This command will start capturing packets from the eth0 interface and save them to the capture.pcap file in the current directory.
+
+Once you've captured the traffic, you can analyze it using various tools or transfer the capture file to another machine with Wireshark installed to analyze it with the graphical interface.
+
+If you absolutely need to use Wireshark's graphical interface, you would typically run Wireshark on a machine with a graphical desktop environment, not within a headless environment like Alpine Linux without X display support.
